@@ -1,0 +1,28 @@
+{% extends 'accounte/base.html' %} {% block title %}Hellow Supervisor
+{%endblock%} {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Sea All Tasks</h1>
+</div>
+{% if taskss %}
+<div class="list-group">
+  {% for task in taskss %}
+  <a
+    href="{% url 'task-detail' task.pk %}"
+    class="list-group-item list-group-item-action"
+  >
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ task.title }}</h5>
+      <small>{{ task.created_at|date:'Y-m-d' }}</small>
+    </div>
+    <p class="mb-1 text-truncate">{{ task.description }}</p>
+    <small>Completed: {{ task.completed }}</small>
+  </a>
+  {% empty %}
+  <p class="mb-1 text-truncate">NO TASKS FOUND</p>
+  {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info"></div>
+{% endif %}
+<div class="alert alert-info"></div>
+{% endblock %}

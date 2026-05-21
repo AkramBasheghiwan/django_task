@@ -1,0 +1,18 @@
+{% extends 'accounte/base.html' %} {% block title %}Task Detail{% endblock %}
+{%block content %}
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">{{ task.title }}</h2>
+    <p class="card-text">{{ task.description|linebreaks }}</p>
+    <p><strong>Due date:</strong> {{ task.due_date }}</p>
+    <p><strong>Completed:</strong> {{ task.completed }}</p>
+    <div class="mt-4">
+      <a class="btn btn-primary" href="{% url 'task-update' task.pk %}">Edit</a>
+      <a class="btn btn-danger" href="{% url 'task-delete' task.pk %}"
+        >Delete</a
+      >
+      <a class="btn btn-secondary" href="{% url 'task-list' %}">Back</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
