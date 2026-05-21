@@ -13,7 +13,7 @@ from django.shortcuts import redirect, render
 
 from .forms import ProfileForm, UserLoginForm, UserRegisterForm,TaskForm
 from .models import Profile, Task
-
+from rest_framework.viewsets import ModelViewSet
 
 
 
@@ -229,6 +229,14 @@ class UserListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return super().handle_no_permission()
 
 
-class TaskListCreateAPIView(generics.ListCreateAPIView):
+# class TaskListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = Task.objects.all()
+#     serializer_class = TaskSerializer
+
+
+
+class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+# https://akrambasheghiwan123.pythonanywhere.com/login/?next=/

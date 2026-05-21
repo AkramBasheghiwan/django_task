@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path,include
 
 from .views import (
-    TaskListCreateAPIView,
+    TaskViewSet,
     TaskListView,
     TaskDetailView,
     TaskCreateView,
@@ -15,6 +15,12 @@ from .views import (
     SuperUserSeaAllTasks
     
 )
+
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register('tasks', TaskViewSet,)
 
 urlpatterns = [
    
@@ -31,4 +37,5 @@ urlpatterns = [
     path('users/', UserListView.as_view(), name='user-list'),
     path('tasks/list/', SuperUserSeaAllTasks.as_view(), name='tasks-list'),
     # path('api/tasks/', TaskListCreateAPIView.as_view(), name='api-tasks'),
+    path('api/', include(router.urls)), 
 ]
